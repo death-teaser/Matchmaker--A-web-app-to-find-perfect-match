@@ -1,0 +1,79 @@
+{% extends 'base.html' %}
+{% load crispy_forms_tags %}
+
+<style>
+{% block style %}
+.navbar-static-top {
+  margin-bottom: 0px !important;
+}
+body {
+  min-height: 1000px;
+}
+
+{% endblock %}
+
+</style>
+
+
+{% block jumbotron %}
+{% if  not request.user.is_authenticated %}
+
+<div class="jumbotron" style="background-color:green; color:#f9f9f9;">
+    <div class="container">
+    <div class="row">
+        <div class="col-sm-6">
+            <h1>Matchmaker</h1>
+            <p>This example is a quick exercise to illustrate how the default, static and fixed to top 		navbar work. It includes the responsive CSS and HTML, so it also adapts to your viewport 	and device.
+            </p>
+            <p>To see the difference between static and fixed top navbars, just scroll.</p>
+            <p><a class="btn btn-lg btn-primary" href="/contact/" role="button">Contact us &raquo;</a></p>
+        </div>
+        <div class="col-sm-6" style=" black;height: 315px;">
+            <iframe width="600" height="315" src="https://www.youtube.com/embed/nFzdfqEH-7E" frameborder="0" allowfullscreen></iframe>
+        </div>
+    </div>
+    </div>
+{% endif %}
+</div>
+
+{% endblock %}
+
+
+{% block content %}
+
+<!--{% if  request.user.is_authenticated %}
+      <h1>You are logged in!</h1>
+    {% if qweryset %}
+        <h1>Welcome Staff</h1>
+        <table class="table">
+        {%  for i in qweryset %}
+            <tr><td>{{ forloop.counter }}</td><td>{{ i }}</td><td>{{ i.full_name }}</td><td>{{ i.timestamp| timesince }}</td></tr>
+        {% endfor %}
+        </table>
+     {% endif %}
+{% else %}-->
+
+<div class="row">
+    <div class="col-sm-3  pull-right" >
+        <p class="lead"><strong>{{ title }}</strong>
+
+
+        <form method='POST' action=''>
+        {% csrf_token %}
+        {{ form|crispy }}
+        <input class="btn btn-primary" type="submit" name="" value='SignUp'>
+        </form>
+
+    </div>
+    <div class="col-sm-3" >
+        <p class="lead text-align-center">Built with django </p>
+    </div>
+    <div class="col-sm-3" >
+        <p class="lead">Matchmaker</p>
+    </div>
+    <div class="col-sm-3" >
+        <p class="lead">Open source project</p>
+    </div>
+</div>
+{% endif %}
+{% endblock %}

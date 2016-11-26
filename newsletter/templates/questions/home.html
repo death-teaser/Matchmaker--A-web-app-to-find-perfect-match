@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+
+
+{% block content %}
+
+<form method="POST" action=""> {% csrf_token %}
+<h1>{{ instance.text }}</h1>
+	<input type="hidden" name="question id" value='{{ instance.id }}'/>
+{% for ans in instance.answer_set.all %}
+<input type='radio' name='answer_id' value='{{ ans.id }}'/> {{ ans.text }} <br/>
+{% endfor %}
+
+<input class="btn btn-primary" type="submit" value="save and continue"/>
+</form>
+
+
+{% endblock %}
