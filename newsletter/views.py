@@ -18,7 +18,7 @@ def home(request):
         #form.save()
         instance = form.save(commit=False)
         if not instance.full_name:
-            instance.full_name = "Anknown"
+            instance.full_name = "Unknown"
         instance.save()
         context = {
             "title": "Thank You"
